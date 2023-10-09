@@ -40,21 +40,40 @@ struct AddTransactionView: View {
             .padding()
             
             if categoryExists {
-                Button {
-                    if !viewModel.addAmountToCategory(amt: amountNo, categoryName: categoryText) {
-                        categoryExists.toggle()
-                    } else {
+                HStack {
+                    Button {
                         showView.toggle()
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text("Cancel")
+                                .foregroundColor(.white).bold()
+                                .frame(alignment: .trailing)
+                                .padding()
+                                .background(.red)
+                                .cornerRadius(10)
+                                .padding()
+                        }
                     }
-                } label: {
-                    VStack(alignment: .trailing) {
-                        Text("Submit")
-                            .foregroundColor(.white).bold()
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding()
+                    Spacer()
+                    Button {
+                        if !viewModel.addAmountToCategory(amt: amountNo, categoryName: categoryText) {
+                            categoryExists.toggle()
+                        } else {
+                            showView.toggle()
+                        }
+                    } label: {
+                        VStack(alignment: .trailing) {
+                            Text("Submit")
+                                .foregroundColor(.white).bold()
+                                .frame(alignment: .trailing)
+                                .padding()
+                                .background(Color("greenText"))
+                                .cornerRadius(10)
+                                .padding()
+                        }
                     }
-                    .background(Color("greenText"))
                 }
+                
             } else {
                 HStack {
                     Text("Error - No category with that name found")
