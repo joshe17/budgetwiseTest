@@ -64,5 +64,5 @@ class HomePageViewModel: ObservableObject {
             UserDefaults.standard.set(encoded, forKey: "user_categories")
         }
     }
-    
+}
 
